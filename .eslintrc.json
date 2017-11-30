@@ -26,6 +26,9 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-var": "error",
+        "no-unused-vars": "warn",
+        "prefer-const": "error"
     }
 }
