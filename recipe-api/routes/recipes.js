@@ -25,6 +25,31 @@ function handleError(err, res, statusCode, next) {
 
 
 // TODO: Add utility functions to create and update recipes
+function createRecipe(req) {
+    return {
+        name: req.body.name,
+        typeOfMeal: req.body.typeOfMeal,
+        imageURL: req.body.imageURL,
+        prepTime: req.body.prepTime,
+        cookTime: req.body.cookTime,
+        servingSize: req.body.servingSize,
+        cost: req.body.cost,
+        ingredients: req.body.ingredients,
+        directions: req.body.directions
+    }
+}
+
+function updateRecipe(recipe, req) {
+    recipe.name = req.body.name;
+    recipe.typeOfMeal = req.body.typeOfMeal;
+    recipe.imageURL = req.body.imageURL;
+    recipe.prepTime = req.body.prepTime;
+    recipe.cookTime = req.body.cookTime;
+    recipe.servingSize = req.body.servingSize;
+    recipe.cost = req.body.cost;
+    recipe.ingredients = req.body.ingredients;
+    recipe.directions = req.body.directions;
+}
 
 // BUILD THE API
 
@@ -42,20 +67,11 @@ router
     // Create new recipe
     .post('/', (req, res, next) => {
         // DONE: Implement POST API on given route
-        RECIPE.create({
-            name: req.body.name,
-            typeOfMeal: req.body.typeOfMeal,
-            imageURL: req.body.imageURL,
-            prepTime: req.body.prepTime,
-            cookTime: req.body.cookTime,
-            servingSize: req.body.servingSize,
-            cost: req.body.cost,
-            ingredients: req.body.ingredients,
-            directions: req.body.directions
-        }, (err, recipe) => {
+        RECIPE.create(createRecipe(req), (err, recipe) => {
             if (err) {
                 handleError(new Error('Could not add recipe'), res, 400, next);
             } else {
+                updateRecipe(recipe, req);
                 res.json(recipe);
             }
         });
@@ -65,15 +81,45 @@ router
 router.route('/:recipeId')
     //Get recipe by id
     .get((req, res, next) => {
-        // TODO: Implement GET API on given route
+        // DONE: Implement GET API on given route
+        RECIPE.findById(req.params.recipeId, (err, recipe) => {
+            if (err) {
+                handleError(new Error('Could not get recipe by id'), res, 404, next);
+            } else {
+                res.json(recipe);
+            }
+        });
     })
     // Update recipe by id
     .put((req, res, next) => {
         // TODO: Implement PUT API on given route
+        RECIPE.findById(req.params.recipeId, (err, recipe) => {
+            if (err) {
+                handleError(new Error('Could find recipe to update'), res, 404, next);
+            } else {
+                updateRecipe(recipe, req);
+                recipe.save((err, updatedRecipe) => {
+                    if (err) {
+                        handleError(new Error('Could not update the recipe'), res, 400, next);
+                    } else {
+                        res.json(updatedRecipe);
+                    }
+                });
+            }
+        });
     })
     // Delete recipe with id
     .delete((req, res, next) => {
         // TODO: Implement DELETE API on given route
+        RECIPE.findOneAndRemove(req.params.recipeId)
+            .exec(err => {
+                if (err) {
+                    handleError(new Error('Could not find recipe to remove'), res, 404, next);
+                } else {
+                    res.status = 204;
+                    res.json(null);
+                }
+            });
     });
 
 module.exports = router;
