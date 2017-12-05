@@ -1,0 +1,31 @@
+{
+    "name": "Skillet Chicken Puttanesca",
+    "typeOfMeal": "Dinner",
+    "imageURL": "http://www.simplyrecipes.com/wp-content/uploads/2017/06/2017-07-12-ChickenPuttanesca-7-600x400.jpg",
+    "prepTime": "10",
+    "cookTime": "20",
+    "servingSize": "4",
+    "cost": "20.00",
+    "ingredients": [
+    	"1 can (28 ounces) whole peeled tomatoes, with their juices",
+		"4 anchovy fillets, coarsely chopped (optional)",
+		"1 cup pitted Kalamata or other black olives, coarsely chopped",
+		"1/4 cup capers",
+		"1 teaspoon crushed red pepper, or more to taste",
+		"3 tablespoons chopped fresh oregano",
+		"4 skinless, boneless chicken breasts (about 3 pounds)",
+		"1/2 teaspoon salt, or more to taste",
+		"1/4 teaspoon ground black pepper, or more to taste",
+		"3 tablespoons olive oil, divided",
+		"2 cloves garlic, finely chopped",
+		"Extra sprigs fresh oregano, for garnish",
+		"Crusty bread, to serve (skip if serving gluten-free)"
+    ],
+    "directions": [
+    	"1 Prep the tomato sauce: Pour the tomatoes into a bowl and crush with your hands or with a wooden spoon until you have uneven 1-inch pieces (you can also use scissors to snip the tomatoes into small pieces). Mix in the anchovies, olives, capers, red pepper, and 2 tablespoons of the oregano to the bowl. Set aside.",
+		"2 Sear the chicken: Sprinkle the chicken all over with salt and black pepper. In a large skillet over medium-high heat, heat 2 tablespoons of the olive oil until hot. Add the chicken and cook without disturbing for 3 minutes, or until browned. If you are using a cast-iron or stainless steel skillet, do not turn until the chicken moves easily without prodding. Turn and cook the other side for 3 minutes. Transfer to a plate.",
+		"3 Make the sauce: In the skillet over medium heat, heat the remaining 1 tablespoon oil. Add the garlic and cook, stirring, for 1 minute. Add the tomato mixture – be careful since the juices will splutter when you add them to the pan. Cook for 1 minute or until the spluttering stops. Stir well, turn down the heat, and simmer for 5 minutes. Taste for seasoning and add more salt, black pepper, or red pepper, if you like.",
+		"4 Add the chicken and finish the sauce: Add the chicken breasts and any juices to the skillet and spoon a little sauce over top. Cover the pan and simmer for 5 to 8 minutes, or until a meat thermometer inserted into the thickest part of the chicken registers 165F.",
+		"5 Serve: Serve straight from the skillet or transfer to a serving platter. Sprinkle the remaining 1 tablespoon oregano over the top and garnish with oregano sprigs. Serve with plenty of crusty bread."
+    ]
+}
