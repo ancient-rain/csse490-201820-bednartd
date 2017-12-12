@@ -1,0 +1,9 @@
+Running into errors while trying to compile: Stack trace:
+(node:2672) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
+(node:2672) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 1): Error: Invalid mongodb uri "mongod://localhost:3000". Must begin with "mongodb://"
+(node:2672) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+ERROR connecting to mongodb://localhost/scheduledb. MongoError: failed to connect to server [localhost:27017] on first connect [MongoError: connect ECONNREFUSED 127.0.0.1:27017]
+(node:2672) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 2): MongoError: failed to connect to server [localhost:27017] on first connect [MongoError: connect ECONNREFUSED 127.0.0.1:27017]
+There is no need for mongo for this assignment. Why is it being used here?
+Please fix these errors and I'll regrade it.
+Grade: 0/20
