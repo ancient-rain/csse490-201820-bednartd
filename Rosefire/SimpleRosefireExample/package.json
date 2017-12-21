@@ -1,0 +1,23 @@
+{
+  "name": "node-token-jwt",
+  "version": "1.0.0",
+  "description": "Simple express app to illustrate token authentication",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "defoe",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "crypto": "^1.0.1",
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.9.1",
+    "morgan": "^1.9.0",
+    "rosefire": "git+https://ada.csse.rose-hulman.edu/rosefire/javascript-sdk.git#2.1.1",
+    "rosefire-node": "git+https://ada.csse.rose-hulman.edu/rosefire/node-sdk.git#2.1.0"
+  },
+  "//": " TODO 1. npm install rosefire-node and rosefire javascript sdks"
+}
