@@ -1,0 +1,77 @@
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
+// Changes to file
+// Will be used to define a function to accept 
+// message and callback function
+let gracefulShutdown;
+let dbURI = 'mongodb://localhost/contactsappdb';
+if (process.env.NODE_ENV === 'production') {
+    dbURI = process.env.MLAB_URI;
+}
+mongoose.connect(dbURI, {
+    useMongoClient: true
+});
+
+// Emulating disconnection events on Windows
+const readLine = require("readline");
+
+if (process.platform === "win32") {
+    const rl = readLine.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    rl.on("SIGINT", () => {
+        process.emit("SIGINT");
+    });
+}
+
+// CONNECTION EVENTS
+// Monitoring for successful connection through Mongoose
+mongoose.connection.on('connected', () => {
+    console.log(`Mongoose connected to ${dbURI}`);
+});
+
+// Checking for connection error
+mongoose.connection.on('error', err => {
+    console.log(`Mongoose connection error: ${err}`);
+});
+
+// Checking for disconnection event
+mongoose.connection.on('disconnected', () => {
+    console.log('Mongoose disconnected');
+});
+
+// CAPTURE APP TERMINATION / RESTART EVENTS
+// To be called when process is restarted or terminated
+gracefulShutdown = (msg, callback) => {
+    // Close Mongoose connection, passing through an 
+    // anonymous function to run when closed
+    mongoose.connection.close(() => {
+        console.log(`Mongoose disconnected through ${msg}`);
+        callback();
+    });
+};
+// Listens for SIGUSR2, which is what nodemon uses when it restarts app
+process.once('SIGUSR2', () => {
+    gracefulShutdown('nodemon restart', () => {
+        process.kill(process.pid, 'SIGUSR2');
+    });
+});
+// For app termination
+process.on('SIGINT', () => {
+    gracefulShutdown('app termination', () => {
+        process.exit(0);
+    });
+});
+// For Heroku app termination
+process.on('SIGTERM', () => {
+    gracefulShutdown('Heroku app termination', () => {
+        process.exit(0);
+    });
+});
+
+// BRING IN YOUR SCHEMAS & MODELS
+// Use plural form of name
+const contacts = require('./contacts');
