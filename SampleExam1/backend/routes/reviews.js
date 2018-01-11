@@ -77,7 +77,7 @@ router.route('/')
         });
     });
 
-/*  oute middleware to validata :id for rest of API */
+/*  route middleware to validata :id for rest of API */
 router.param('id', (req, res, next, id) => {
     reviewsModel.findById(id, (err, review) => {
         if(err || review === null){
@@ -106,7 +106,7 @@ router.route('/:id')
     })
 
     /*  Update book-review with the given :id */
-    //  TODO: Impletment the request handler for this request.
+    //  DONE: Impletment the request handler for this request.
     //  Be sure to return appropriate http status codes if error.
     //  Also, make this an authenticated request
     .put( (req, res) => {
