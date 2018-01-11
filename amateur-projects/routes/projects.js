@@ -72,6 +72,37 @@ function createComment(req, res, project) {
     });
 }
 
+function deleteComment(req, res, project) {
+    let thisCommentIndex = -1;
+    if (project.comments.length) {
+        thisCommentIndex = findComment(req, project);
+        if (thisCommentIndex < 0) {
+            handleError(new Error(), res, 'Could not find Comment to delete', 404);
+        } else {
+            project.comments.splice(thisCommentIndex, 1);
+            project.save((err) => {
+                if (err) {
+                    handleError(err, res, 'Could not delete Comment', 400);
+                } else {
+                    res.status(204);
+                    res.json(null);
+                }
+            });
+        }
+    } else {
+        handleError(new Error(), res, 'No Comments to delete', 400);
+    }
+}
+
+function findComment(req, project) {
+    for (let i = 0; i < project.comments.length; i++) {
+        if (project.comments[i]._id == req.params.commentId) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 router.route('/')
     //GET all projects
     .get((req, res) => {
@@ -119,7 +150,7 @@ router.route('/:projectId')
         }
     })
     // DONE: Implement the request handler for this request 
-    .put((req, res) => {
+    .put(auth, (req, res) => {
         PROJECT.findById(req.params.projectId, (err, project) => {
             if (err) {
                 handleError(new Error("Could not update project."), res,
@@ -140,7 +171,7 @@ router.route('/:projectId')
     })
 
     // DONE: Implement the request handler for this request 
-    .delete((req, res) => {
+    .delete(auth, (req, res) => {
         PROJECT.findByIdAndRemove(req.params.projectId)
             .exec(err => {
                 if (err) {
@@ -155,7 +186,7 @@ router.route('/:projectId')
 // ADD a comment
 router.route('/:projectId/comments')
     // DONE: Implement the request handler for this request 
-    .post((req, res) => {
+    .post(auth, (req, res) => {
         if (req.params && req.params.projectId) {
             PROJECT.findById(req.params.projectId, (err, project) => {
                 if (err) {
@@ -172,21 +203,20 @@ router.route('/:projectId/comments')
 
 router.route('/:projectId/comments/:commentId')
     // REMOVE a comment
-    // TODO: Implement the request handler for this request 
-    .delete(
-        (req, res) => {
-            if (!req.params.projectId || !req.params.commentId) {
-                handleError({}, res, 'Not found, projectId and commentId are both required.', 404);
-                return;
-            }
-            PROJECT
-                .findById(req.params.projectId)
-                .select('comments')
-                .exec(
-                    // TODO:  Started the shell of this solution for you. 
-                    // Finish or change the format of this if you like.
-                );
+    // DONE: Implement the request handler for this request 
+    .delete(auth, (req, res) => {
+        if (!req.params.projectId || !req.params.commentId) {
+            handleError({}, res, 'Not found, projectId and commentId are both required.', 404);
+            return;
         }
-    );
+
+        PROJECT.findById(req.params.projectId, (err, project) => {
+            if (err) {
+                handleError(err, res, 'Project Not Found', 404);
+            } else {
+                deleteComment(req, res, project);
+            }
+        });
+    });
 
 module.exports = router;
