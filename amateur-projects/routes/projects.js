@@ -96,15 +96,22 @@ router.route('/:projectId')
     // TODO: Implement the request handler for this request 
     .put((req, res) => {
         //  TODO: Your code should go here.
-        handleError(new Error("replace with msg"), res, 
+        handleError(new Error("replace with msg"), res,
             "Problem updating project in db.", 400);
     })
 
     // TODO: Implement the request handler for this request 
     .delete((req, res) => {
         //  TODO: Your code should go here.
-        handleError(new Error("replace with msg"), res, 
-            "Problem deleting project from db.", 400);
+        PROJECT.findOneAndRemove(req.params.projectId)
+            .exec(err => {
+                if (err) {
+                    handleError(err, res, "Problem deleting project from db.", 400);
+                } else {
+                    res.status(204);
+                    res.json(null);
+                }
+            });
     });
 
 // ADD a comment
@@ -112,7 +119,7 @@ router.route('/:projectId/comments')
     // TODO: Implement the request handler for this request 
     .post((req, res) => {
         //  TODO: Your code should go here.
-        handleError(new Error("replace with msg"), res, 
+        handleError(new Error("replace with msg"), res,
             "Problem adding a comment to this project.", 400);
     });
 
