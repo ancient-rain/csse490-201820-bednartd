@@ -7,7 +7,7 @@ var sendJSONresponse = (res, status, content) => {
 };
 
 module.exports.register = (req, res) => {
-    //  TODO: allow users to register so they can access protected routes.
+    //  DONE: allow users to register so they can access protected routes.
     //  Be sure to check all required fields, verify that username is 
     //  unique (send 409 http status code if not).
     //  Send 404 http status code if saving registered user errors out.
@@ -20,7 +20,7 @@ module.exports.register = (req, res) => {
 
     user.setPassword(req.body.password);
     
-    const token = user.generateJwt();
+    // const token = user.generateJwt();
 
     user.save(err => {
         if (err) {
@@ -34,19 +34,18 @@ module.exports.register = (req, res) => {
             });
         } else {
             sendJSONresponse(res, 200, {
-                "message": "User saved successfully!",
-                "token": token
+                "message": "User saved successfully!"
+                // "token": token
             });
         }
     });
 };
 
 module.exports.login =  (req, res) => {
-    //  TODO: allow registered users to login to access proteted routes.
+    //  DONE: allow registered users to login to access proteted routes.
     //  Be sure to check error cases and return 404/401 http status codes, 
     //  as appropriate. A logged in user should receive a JWT generated 
     //  by model/users.js
-    console.log(req.body);
     User.findOne({
         username: req.body.username
     }, (err, user) => {
@@ -60,7 +59,7 @@ module.exports.login =  (req, res) => {
                 "message": "Authentication failed, no user"
             });
         } else if (user) {
-            if (user.validPassword(req.body.password)) {
+            if (!user.validPassword(req.body.password)) {
                 sendJSONresponse(res, 403, {
                     "message": "Authentication failed, wrong password"
                 });
@@ -69,7 +68,7 @@ module.exports.login =  (req, res) => {
                     first: user.first,
                     last: user.last
                 };
-                user.generateJwt();
+                const token = user.generateJwt();
                 sendJSONresponse(res, 200, {
                     "message": "Authentication successful!",
                     "token": token
