@@ -200,9 +200,8 @@ router.route('/:projectId/comments')
         }
     });
 
-
+// REMOVE a comment
 router.route('/:projectId/comments/:commentId')
-    // REMOVE a comment
     // DONE: Implement the request handler for this request 
     .delete(auth, (req, res) => {
         if (!req.params.projectId || !req.params.commentId) {
