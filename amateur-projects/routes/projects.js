@@ -47,6 +47,12 @@ function makeComment(req, res, project) {
     });
 }
 
+function updateProject(project, req) {
+    project.name = req.body.name;
+    project.description = req.body.description;
+    project.email = req.body.email;
+}
+
 router.route('/')
     //GET all projects
     .get((req, res) => {
@@ -95,14 +101,27 @@ router.route('/:projectId')
     })
     // TODO: Implement the request handler for this request 
     .put((req, res) => {
-        //  TODO: Your code should go here.
-        handleError(new Error("replace with msg"), res,
-            "Problem updating project in db.", 400);
+        PROJECT.findById(req.params.projectId, (err, project) => {
+            if (err) {
+                handleError(new Error("Could not update project."), res,
+                    "Project could not be found", 404);
+            } else {
+                updateProject(project, req);
+                project.save((err, updatedProject) => {
+                    if (err) {
+                        handleError(new Error("Could not update project."), res,
+                            "Problem updating project in db.", 400);
+                    } else {
+                        res.json(updatedProject);
+                    }
+                });
+            }
+        });
+
     })
 
-    // TODO: Implement the request handler for this request 
+    // DONE: Implement the request handler for this request 
     .delete((req, res) => {
-        //  TODO: Your code should go here.
         PROJECT.findByIdAndRemove(req.params.projectId)
             .exec(err => {
                 if (err) {
