@@ -18,7 +18,7 @@ const auth = jwt({
     userProperty: 'payload'
 });
 
-//  TODO: Use this function to handle ALL errors that the various 
+//  DONE: Use this function to handle ALL errors that the various 
 //  requests may generate.
 function handleError(err, res, msg) {
     err = new Error(err.message + msg);
@@ -44,6 +44,8 @@ router.use(methodOverride((req, res) => {
     }
 }));
 
+// router.use('/:id', auth);
+
 /* Build the REST operations at the base of book-reviews */
 router.route('/')
     /* Get all book-reviews */
@@ -60,7 +62,7 @@ router.route('/')
 
     /*  Post a new book-review */
     //  TODO: Make this an authenticated request
-    .post((req, res) => {
+    .post(auth, (req, res) => {
         reviewsModel.create({
             rating: req.body.rating,
             body: req.body.body,
@@ -109,7 +111,7 @@ router.route('/:id')
     //  DONE: Impletment the request handler for this request.
     //  Be sure to return appropriate http status codes if error.
     //  Also, make this an authenticated request
-    .put( (req, res) => {
+    .put(auth, (req, res) => {
         reviewsModel.findById(req.params.id, (err, book) => {
             if (err) {
                 handleError(new Error('Could not find book to update'), res, 404);
