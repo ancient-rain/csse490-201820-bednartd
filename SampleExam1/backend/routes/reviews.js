@@ -26,6 +26,14 @@ function handleError(err, res, msg) {
     res.json({ message: `${err.status} ${err}` });
 }
 
+function updateBook(book, req) {
+    book.rating = req.body.rating;
+    book.body = req.body.body;
+    book.reviewer = req.body.reviewer;
+    book.book = req.body.book;
+    book.createdOn = req.body.createdOn;
+}
+
 router.use(bodyParser.urlencoded({extended: true}));
 router.use(methodOverride((req, res) => {
     if(req.body && typeof req.body == 'object' && '_method' in req.body){
@@ -101,18 +109,37 @@ router.route('/:id')
     //  TODO: Impletment the request handler for this request.
     //  Be sure to return appropriate http status codes if error.
     //  Also, make this an authenticated request
-    .put( (req, res) => {   
-        res.status(400);
-        handleError(new Error("replace with msg"), res, 
-            "Problem updating review in db.");
+    .put( (req, res) => {
+        reviewsModel.findById(req.params.id, (err, book) => {
+            if (err) {
+                handleError(new Error('Could not find book to update'), res, 404);
+            } else {
+                updateBook(book, req);
+                book.save((err, updatedBook) => {
+                    if (err) {
+                        handleError(new Error('Could not update the book'), res, 400);
+                    } else {
+                        res.json(updatedBook);
+                    }
+                });
+            }
+        });   
     })
 
     /*  Deleting of reviews is not allowed in this app. */
-    //  TODO: Impletment the request handler for this request so that 
+    //  DONE: Impletment the request handler for this request so that 
     //  deletion is NOT allowed.  Be sure to send the appropriate http
     //  status code.
     .delete((req, res) =>{
-        //  All your code should go here.
+        reviewsModel.findOneAndRemove(req.params.id)
+            .exec(err => {
+                if (err) {
+                    handleError(err, res, 'Problem deleting recipe');
+                } else {
+                    res.status(204);
+                    res.json(null);
+                }
+            });
     });
 
 export default router;
