@@ -103,7 +103,7 @@ router.route('/:projectId')
     // TODO: Implement the request handler for this request 
     .delete((req, res) => {
         //  TODO: Your code should go here.
-        PROJECT.findOneAndRemove(req.params.projectId)
+        PROJECT.findByIdAndRemove(req.params.projectId)
             .exec(err => {
                 if (err) {
                     handleError(err, res, "Problem deleting project from db.", 400);
