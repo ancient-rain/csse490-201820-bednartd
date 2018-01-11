@@ -53,6 +53,25 @@ function updateProject(project, req) {
     project.email = req.body.email;
 }
 
+function createComment(req, res, project) {
+    let thisComment;
+    project.comments.push({
+        author: req.body.author,
+        commentText: req.body.commentText,
+        createdOn: req.body.createdOn
+    });
+    project.save((err, project) => {
+        if (err) {
+            handleError(err, res, 'Could not add Comment', 400);
+        } else {
+            const commentsLen = project.comments.length;
+            thisComment = project.comments[commentsLen - 1];
+            res.status(200);
+            res.json(thisComment);
+        }
+    });
+}
+
 router.route('/')
     //GET all projects
     .get((req, res) => {
@@ -99,7 +118,7 @@ router.route('/:projectId')
             handleError(new Error(), res, 'GET error, problem retrieving data', 404);
         }
     })
-    // TODO: Implement the request handler for this request 
+    // DONE: Implement the request handler for this request 
     .put((req, res) => {
         PROJECT.findById(req.params.projectId, (err, project) => {
             if (err) {
@@ -135,11 +154,19 @@ router.route('/:projectId')
 
 // ADD a comment
 router.route('/:projectId/comments')
-    // TODO: Implement the request handler for this request 
+    // DONE: Implement the request handler for this request 
     .post((req, res) => {
-        //  TODO: Your code should go here.
-        handleError(new Error("replace with msg"), res,
-            "Problem adding a comment to this project.", 400);
+        if (req.params && req.params.projectId) {
+            PROJECT.findById(req.params.projectId, (err, project) => {
+                if (err) {
+                    handleError(err, res, 'Project Not Found', 404);
+                } else {
+                    createComment(req, res, project);
+                }
+            });
+        } else {
+            handleError({}, res, "GET error, problem retrieving project data", 404);
+        }
     });
 
 
