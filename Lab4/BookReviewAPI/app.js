@@ -1,17 +1,17 @@
-import express from 'express';
-import path  from 'path';
-import 'serve-favicon';
-import logger from 'morgan';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+const express = require('express');
+const path  = require('path');
+require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-import './model/db';
+require('./model/db');
 
-import routes from './routes/index';
-import reviews from './routes/reviews';
+const routes = require('./routes/index');
+const reviews = require('./routes/reviews');
 
-import authenticate from './routes/auth';
+const authenticate = require('./routes/auth');
 
 var app = express();
 
@@ -59,4 +59,4 @@ app.use((err, req, res, next) => {
     });
 });
 
-export default app;
+module.exports = app;

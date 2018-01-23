@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 var sendJSONresponse = (res, status, content) => {
@@ -7,6 +7,7 @@ var sendJSONresponse = (res, status, content) => {
 };
 
 module.exports.register = (req, res) => {
+    console.log(req.body.username);
     if(!req.body.username || !req.body.first || !req.body.last || 
         !req.body.password) {
         sendJSONresponse(res, 400, {

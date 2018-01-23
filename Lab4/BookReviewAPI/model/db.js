@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import config from '../config';       // get our config file
+const mongoose = require('mongoose');
+const config = require('../config');       // get our config file
 
 
 let gracefulShutdown;
@@ -7,7 +7,7 @@ const dbUri = config.database;
 mongoose.connect(dbUri);
 
 /*  Emulateing disconnection events on Windows */
-import readLine from 'readline';
+const readLine = require('readline');
 if(process.platform === "win32"){
     let rl = readLine.createInterface({
         input : process.stdin,
@@ -65,8 +65,8 @@ process.on('SIGTERM', () => {
     });
 });
 
-import './users.js';
-import './reviews.js';
+require('./users.js');
+require('./reviews.js');
 
 
 

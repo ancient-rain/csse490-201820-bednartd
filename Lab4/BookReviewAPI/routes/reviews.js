@@ -1,9 +1,9 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import methodOverride from 'method-override'; 
-import jwt from 'express-jwt';
-import config from '../config';  
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override'); 
+const jwt = require('express-jwt');
+const config = require('../config');  
 
 
 const reviewsModel = mongoose.model('Review');
@@ -125,4 +125,4 @@ router.route('/:id')
         handleError(err, res, 'Forbidden');
     });
 
-export default router;
+module.exports = router;

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const contactSchema  = new mongoose.Schema({
     rating: {type: String, required: true},
     body: {type: String, required: true},
@@ -7,4 +7,4 @@ const contactSchema  = new mongoose.Schema({
     createdOn: {type: Date, "default": Date.now}, 
 });
 
-export default mongoose.model('Review', contactSchema);
+module.exports = mongoose.model('Review', contactSchema);
