@@ -40,7 +40,7 @@ describe('/book-reviews', function (done) {
     });
 });
 
-describe('/book-reviews:id', function () {
+describe('/book-reviews:id', function (done) {
 
     let request;
 
