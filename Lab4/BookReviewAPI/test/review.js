@@ -20,7 +20,6 @@ describe('testing /book-reviews endpoint', function (done) {
             .expect(200)
             .end(function (err, res) {
                 token = 'Bearer ' + res.body.token;
-                console.log('Before Token', token);
                 done();
             });
     });
