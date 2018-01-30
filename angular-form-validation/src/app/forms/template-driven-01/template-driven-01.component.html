@@ -1,0 +1,53 @@
+<div class="main">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h2>
+              Form built using Template Driven API
+          </h2>
+        </mat-card-title>
+      </mat-card-header>
+    
+      <mat-card-content>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Username" 
+              type="email"
+              name="username"
+              ngModel>
+          </mat-form-field>
+          <mat-input-container class="full-width">
+            <input matInput placeholder="SSN" 
+              name="mySocial"
+              ngModel>
+          </mat-input-container>
+    
+          <div ngModelGroup="secret" >
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Password" 
+              type="password" 
+              name="password"
+              ngModel>
+
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Confirm password" 
+              type="password" 
+              name="pconfirm" 
+              ngModel>
+
+            </mat-form-field>
+          </div>
+    
+          <div class="full-width">
+            <button mat-raised-button color="primary" class="right">
+              <mat-icon>save</mat-icon> Submit
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+  <pre>
+      {{formData | json }}
+  </pre>

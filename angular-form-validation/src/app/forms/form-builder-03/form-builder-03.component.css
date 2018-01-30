@@ -1,0 +1,18 @@
+.main {
+    width: 98%;
+    margin: 10px auto;
+}
+
+.full-width {
+    width: 100%;
+}
+
+form {
+    padding: 10px 10px 50px 0;
+}
+
+
+.right {
+    float: right;
+    width: 10%;
+}
