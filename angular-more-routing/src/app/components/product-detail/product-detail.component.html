@@ -1,0 +1,14 @@
+<div class="product">
+  <h1>Product Details for Product: {{productID}}</h1>
+  
+  <p>
+    Is Production environment? {{isProdEnvironment}}
+  </p>
+  
+  <router-outlet></router-outlet>
+
+  <p>
+    <a [routerLink]="['./seller', 5678]">Seller Info</a> 
+    <a [routerLink]="['./prod-description']">Product Description</a>
+  </p>
+</div>
