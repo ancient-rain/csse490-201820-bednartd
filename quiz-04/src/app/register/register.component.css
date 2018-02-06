@@ -1,0 +1,10 @@
+.register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register-card {
+    width: 400px;
+  }
+  

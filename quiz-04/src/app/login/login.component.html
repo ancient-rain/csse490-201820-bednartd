@@ -1,0 +1,32 @@
+<div class="login">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title><h2>{{title}}</h2></mat-card-title>
+    </mat-card-header>
+    <form #f="ngForm" [formGroup]="formGroup" (ngSubmit)="login(f.value, f.valid)">
+      <mat-card-content align="center">
+        <mat-input-container>
+          <input matInput type="text" placeholder="Username" formControlName="username"  required />
+           <mat-error *ngIf="formGroup.hasError('required','username')" [ngStyle]="{'color': 'red'}">
+             Username is required
+          </mat-error>
+          <mat-error *ngIf="formGroup.hasError('username','username')" [ngStyle]="{'color': 'red'}" >
+            Username is incorrect
+        </mat-error>
+        </mat-input-container>
+        <mat-input-container>
+          <input matInput type="password" placeholder="Password" formControlName="password" required />
+          <mat-error *ngIf="formGroup.hasError('required','password')" [ngStyle]="{'color': 'red'}">
+            Password is required
+          </mat-error>
+          <mat-error *ngIf="formGroup.hasError('password','password')" [ngStyle]="{'color': 'red'}">
+            Password is incorrect
+          </mat-error>
+        </mat-input-container>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button type="submit" [disabled]="!f.valid">Login</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

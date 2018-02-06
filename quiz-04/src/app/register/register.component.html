@@ -1,0 +1,45 @@
+<div class="register">
+    <mat-card class="register-card">
+      <mat-card-header>
+        <mat-card-title><h2>{{title}}</h2></mat-card-title>
+      </mat-card-header>
+      <form #f="ngForm" [formGroup]="registerGroup" (ngSubmit)="register(f.value, f.valid)">
+        <mat-card-content align="left">
+          <mat-input-container>
+            <input matInput type="text" placeholder="Username" formControlName="username" required />
+            <!-- Some error checking is needed here -->
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput type="email" placeholder="Email" formControlName="email" required />
+            <!-- Some error checking is needed here -->
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput type="text" placeholder="Name" formControlName="name" />
+            <!-- This is nor an error, just a suggestion to enter a name -->
+            <mat-hint *ngIf="registerGroup.get('name').touched" [ngStyle]="{'color': 'red'}">
+              Please enter a name
+            </mat-hint>
+          </mat-input-container>
+          <div formGroupName="passwordsGroup">
+            <mat-input-container>
+              <input matInput type="password" placeholder="Password" formControlName="password" required />
+              <mat-error 
+                *ngIf="registerGroup.get('passwordsGroup.password').touched &&
+                  registerGroup.hasError('required', ['passwordsGroup', 'password'])"
+                  [ngStyle]="{'color': 'red'}">
+                  Password is required
+              </mat-error>
+            </mat-input-container>
+            <mat-input-container>
+              <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword"  />
+            </mat-input-container>
+           <!-- Do password group error check here -->
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-raised-button  [disabled]="!f.valid">Register</button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+  
