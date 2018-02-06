@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   }
 ];
 
