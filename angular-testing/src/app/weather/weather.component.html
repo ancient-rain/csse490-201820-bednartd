@@ -1,0 +1,14 @@
+<h2>Weather</h2>
+<div [formGroup]="weatherForm">
+  <input type="text" placeholder="Enter city" formControlName="searchInput">
+</div>
+<!-- Using Elvis operator (abbreviated form of ternary operator)  here 
+    let result = somevalue?.name;
+    This is desugared to
+    var result = (somevalue !== undefined) ? somevalue.name : undefined;
+-->
+<h3>Current weather in {{weather?.place}}:</h3>
+<ul>
+    <li>Temperature: {{weather?.temperature}}F</li>
+    <li>Humidity: {{weather?.humidity}}%</li>
+</ul>
