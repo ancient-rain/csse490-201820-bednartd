@@ -10,7 +10,9 @@ function usernameValidator(control: FormControl) {
 }
 
 function passwordValidator(control: FormControl) {
-  return null;
+  const value: string = control.value || '';
+  const valid = User.isCorrectPassword(value);
+  return valid ? null : {password: true};
 }
 
 @Component({
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   constructor(fb: FormBuilder, private _router: Router) {
     this.formGroup = fb.group({
-      'username': new FormControl('', Validators.required),
+      'username': new FormControl('', [Validators.required, usernameValidator]),
       'password': new FormControl('', [Validators.required, passwordValidator])
     });
   }
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
       console.log('Logging in');
       console.log('Username', formValue['username']);
       console.log('Password', formValue['password']);
-      this._router.navigate(['/home']);
+      this._router.navigate(['/']);
     }
   }
 

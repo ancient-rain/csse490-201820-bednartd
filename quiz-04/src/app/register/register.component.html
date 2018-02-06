@@ -8,10 +8,16 @@
           <mat-input-container>
             <input matInput type="text" placeholder="Username" formControlName="username" required />
             <!-- Some error checking is needed here -->
+            <mat-hint *ngIf="registerGroup.get('username').touched && registerGroup.hasError('required', 'username')" [ngStyle]="{'color': 'red'}">
+              Please enter a username
+            </mat-hint>
           </mat-input-container>
           <mat-input-container>
             <input matInput type="email" placeholder="Email" formControlName="email" required />
             <!-- Some error checking is needed here -->
+            <mat-hint *ngIf="registerGroup.get('email').touched && registerGroup.hasError('required', 'email')" [ngStyle]="{'color': 'red'}">
+                Please enter a email
+              </mat-hint>
           </mat-input-container>
           <mat-input-container>
             <input matInput type="text" placeholder="Name" formControlName="name" />
