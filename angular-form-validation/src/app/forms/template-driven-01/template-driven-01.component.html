@@ -1,53 +1,56 @@
 <div class="main">
     <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <h2>
-              Form built using Template Driven API
-          </h2>
-        </mat-card-title>
-      </mat-card-header>
-    
-      <mat-card-content>
-        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Username" 
-              type="email"
-              name="username"
-              ngModel>
-          </mat-form-field>
-          <mat-input-container class="full-width">
-            <input matInput placeholder="SSN" 
-              name="mySocial"
-              ngModel>
-          </mat-input-container>
-    
-          <div ngModelGroup="secret" >
-            <mat-form-field class="full-width">
-              <input matInput placeholder="Password" 
-              type="password" 
-              name="password"
-              ngModel>
+        <mat-card-header>
+            <mat-card-title>
+                <h2>
+                    Form built using Template Driven API
+                </h2>
+            </mat-card-title>
+        </mat-card-header>
 
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input matInput placeholder="Confirm password" 
-              type="password" 
-              name="pconfirm" 
-              ngModel>
+        <mat-card-content>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Username" type="email" name="username" ngModel required #chosenName="ngModel">
+                    <mat-error *ngIf="chosenName.invalid && chosenName.errors.required">
+                        Username is required
+                    </mat-error>
+                </mat-form-field>
+                <mat-input-container class="full-width">
+                    <input matInput placeholder="SSN" name="mySocial" ngModel pattern="^\d{9}$" #ssn="ngModel">
+                    <mat-error *ngIf="ssn.invalid && ssn.errors.pattern">
+                      Must be a valid SSN
+                    </mat-error>
+                </mat-input-container>
 
-            </mat-form-field>
-          </div>
-    
-          <div class="full-width">
-            <button mat-raised-button color="primary" class="right">
-              <mat-icon>save</mat-icon> Submit
-            </button>
-          </div>
-        </form>
-      </mat-card-content>
+                <div ngModelGroup="secret">
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Password" type="password" name="password" ngModel required minlength="3" maxlength="5" #password="ngModel">
+                        <mat-error *ngIf="password.invalid && password.errors.required">
+                          Password is required
+                        </mat-error>
+                        <mat-error *ngIf="password.invalid && password.errors.minlength">
+                          Password must be at least 3 characters long
+                        </mat-error>
+                        <mat-error *ngIf="password.invalid && password.errors.maxlength">
+                          Passowrd length can only be a maximum of 5 characters long
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Confirm password" type="password" name="pconfirm" ngModel>
+                    </mat-form-field>
+                </div>
+
+                <div class="full-width">
+                    <button mat-raised-button color="primary" class="right">
+                        <mat-icon>save</mat-icon> Submit
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
     </mat-card>
+</div>
 
-  <pre>
-      {{formData | json }}
-  </pre>
+<pre>
+  {{formData | json }}
+</pre>

@@ -12,18 +12,33 @@
       <form [formGroup]="formModel" (ngSubmit)="onSubmit()" novalidate>
         <mat-form-field class="full-width">
           <input matInput placeholder="Username" formControlName="username">
+          <mat-error *ngIf="formModel.hasError('required', 'username')">
+            Username is required
+          </mat-error>
         </mat-form-field>
         <mat-input-container class="full-width">
           <input matInput placeholder="SSN" formControlName="ssn">
+          <mat-error *ngIf="formModel.hasError('ssn','ssn')">
+            Enter a valid SSN
+          </mat-error>
         </mat-input-container>
   
         <div formGroupName="passwordsGroup">
           <mat-form-field class="full-width">
             <input matInput placeholder="Password" type="password" formControlName="password">
+            <mat-error *ngIf="formModel.hasError('required', 'passwordsGroup.password')">
+              Password is required
+            </mat-error>
+            <mat-error *ngIf="formModel.hasError('minlength', 'passwordsGroup.password')">
+              Password must be at least 5 characters long
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width">
             <input matInput placeholder="Confirm password" type="password" formControlName="pconfirm">
           </mat-form-field>
+          <mat-error *ngIf="formModel.hasError('equal', 'passwordsGroup')">
+            Passwords must match
+          </mat-error>
         </div>
   
         <div class="full-width">
@@ -34,7 +49,9 @@
       </form>
     </mat-card-content>
   </mat-card>
-
+  <pre>
+    {{password.valid}}
+  </pre>
   <pre>
       {{formModel.value | json}}
   </pre>
