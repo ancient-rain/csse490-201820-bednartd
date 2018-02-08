@@ -34,4 +34,11 @@ export class ScheduleService {
                 Observable.throw(error.json().error || 'Server error'));
     }
 
+    getHeaders() {
+        const url = `${this.domainUrl}/api/headers`;
+        return this.http.get<any>(url)
+            .catch((error: any) =>
+                Observable.throw(error.json().error || 'Server error'));
+    }
+
 }

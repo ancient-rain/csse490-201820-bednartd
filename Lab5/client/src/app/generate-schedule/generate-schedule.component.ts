@@ -61,11 +61,9 @@ export class GenerateScheduleComponent implements OnInit {
         breakStartDate: this.filterDate(value.datesGroup.breakStartDate),
         resumeDate: this.filterDate(value.datesGroup.resumeDate)
       };
-      this.scheduleService.generateSchedule(schedule).subscribe(s => {
-        console.log(s);
-      });
+      this.scheduleService.generateSchedule(schedule);
+      this._router.navigate(['/session']);
     }
-    // this._router.navigate(['/session']);
   }
 
   filterDate(date: Date): string {
