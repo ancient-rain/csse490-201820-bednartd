@@ -33,24 +33,42 @@
         </div>
         <div formGroupName="datesGroup">
           <mat-input-container>
-            <input matInput type="text" placeholder="Start Date" formControlName="startDate" required>
+            <input matInput [matDatepicker]="startDate" placeholder="Start Date" formControlName="startDate" required>
+            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
             <mat-hint *ngIf="genSchedule.get('datesGroup.startDate').touched && genSchedule.hasError('required', ['datesGroup', 'startDate'])"
               [ngStyle]="{'color':'red'}">
               Please enter the start date.
             </mat-hint>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.startDate').touched && genSchedule.hasError('date', 'datesGroup')"
+              [ngStyle]="{'color':'red'}">
+              The start date cannot be after the break or resume date(s).
+            </mat-hint>
           </mat-input-container>
           <mat-input-container>
-            <input matInput type="text" placeholder="Break Start Date" formControlName="breakStartDate" required>
+            <input matInput [matDatepicker]="breakStartDate" placeholder="Break Start Date" formControlName="breakStartDate" required>
+            <mat-datepicker-toggle matSuffix [for]="breakStartDate"></mat-datepicker-toggle>
+            <mat-datepicker #breakStartDate></mat-datepicker>
             <mat-hint *ngIf="genSchedule.get('datesGroup.breakStartDate').touched && genSchedule.hasError('required', ['datesGroup', 'breakStartDate'])"
               [ngStyle]="{'color':'red'}">
               Please enter the break start date.
             </mat-hint>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.breakStartDate').touched && genSchedule.hasError('date', 'datesGroup')"
+              [ngStyle]="{'color':'red'}">
+              The break date cannot be before the start date or after the resume date.
+            </mat-hint>
           </mat-input-container>
           <mat-input-container>
-            <input matInput type="text" placeholder="Resume Date" formControlName="resumeDate" required>
+            <input matInput [matDatepicker]="resumeDate" placeholder="Resume Date" formControlName="resumeDate" required>
+            <mat-datepicker-toggle matSuffix [for]="resumeDate"></mat-datepicker-toggle>
+            <mat-datepicker #resumeDate></mat-datepicker>
             <mat-hint *ngIf="genSchedule.get('datesGroup.resumeDate').touched && genSchedule.hasError('required', ['datesGroup', 'resumeDate'])"
               [ngStyle]="{'color':'red'}">
               Please enter the resume date.
+            </mat-hint>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.resumeDate').touched && genSchedule.hasError('date', 'datesGroup')"
+              [ngStyle]="{'color':'red'}">
+              The resume date cannot be before the start or break date(s).
             </mat-hint>
           </mat-input-container>
         </div>

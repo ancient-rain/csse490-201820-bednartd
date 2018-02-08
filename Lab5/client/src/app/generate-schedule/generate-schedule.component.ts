@@ -5,11 +5,21 @@ import { Router } from '@angular/router';
 function numberOfSessionValidator(control: FormControl) {
   const value: number = control.value || 1;
   const valid = value > 0;
-  return valid ? null : {numberOfSessions: true};
+  return valid ? null : { numberOfSessions: true };
 }
 
-function dateValidator() {
+function dateValidator({ value }: FormGroup) {
+  const [first, second, third] = Object.keys(value || {});
+  let valid = true;
 
+  if (value[second]) {
+    valid = value[first] < value[second];
+    if (value[third]) {
+      valid = value[first] < value[third] && value[second] < value[third];
+    }
+  }
+
+  return valid ? null : { date: true };
 }
 
 @Component({
@@ -33,7 +43,7 @@ export class GenerateScheduleComponent implements OnInit {
         'startDate': new FormControl('', Validators.required),
         'breakStartDate': new FormControl('', Validators.required),
         'resumeDate': new FormControl('', Validators.required)
-      })
+      }, { validator: dateValidator })
     });
   }
 
@@ -44,11 +54,11 @@ export class GenerateScheduleComponent implements OnInit {
     if (valid) {
       console.log('Generating');
       console.log('sessionDays', value.sessionDays);
-      console.log('startDate', value.startDate);
-      console.log('startWeekNumber', value.startWeekNumber);
-      console.log('breakStartDate', value.breakStartDate);
-      console.log('resumeDate', value.resumeDate);
       console.log('numberOfSessions', value.numberOfSessions);
+      console.log('startWeekNumber', value.startWeekNumber);
+      console.log('startDate', value.datesGroup.startDate);
+      console.log('breakStartDate', value.datesGroup.breakStartDate);
+      console.log('resumeDate', value.datesGroup.resumeDate);
     }
     // this._router.navigate(['/session']);
   }
