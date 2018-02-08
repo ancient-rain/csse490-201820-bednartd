@@ -29,12 +29,11 @@ function dateValidator({ value }: FormGroup) {
 })
 export class GenerateScheduleComponent implements OnInit {
 
-  title: 'Generate a Schedule';
   genSchedule: FormGroup;
-  sessionDays: ['M', 'T', 'W', 'TH', 'F', 'S'];
+  days: any;
 
   constructor(fb: FormBuilder, private _router: Router) {
-
+    this.days = [];
     this.genSchedule = fb.group({
       'sessionDays': new FormControl('', Validators.required),
       'numberOfSessions': new FormControl('', [Validators.required, numberOfSessionValidator]),
@@ -52,15 +51,31 @@ export class GenerateScheduleComponent implements OnInit {
 
   generate(value: any, valid: boolean) {
     if (valid) {
-      console.log('Generating');
+      console.log('Generating', this.days);
       console.log('sessionDays', value.sessionDays);
       console.log('numberOfSessions', value.numberOfSessions);
       console.log('startWeekNumber', value.startWeekNumber);
-      console.log('startDate', value.datesGroup.startDate);
-      console.log('breakStartDate', value.datesGroup.breakStartDate);
-      console.log('resumeDate', value.datesGroup.resumeDate);
+      console.log('startDate', this.filterDate(value.datesGroup.startDate));
+      console.log('breakStartDate', this.filterDate(value.datesGroup.breakStartDate));
+      console.log('resumeDate', this.filterDate(value.datesGroup.resumeDate));
     }
     // this._router.navigate(['/session']);
+  }
+
+  filterDate(date: Date): string {
+    const day = date.getUTCDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  }
+
+  onChange(day: string, event) {
+    if (event.checked) {
+      this.days.push(day);
+    } else {
+      const index = this.days.findIndex(x => x.value === day);
+      this.days.splice(index, 1);
+    }
   }
 
 }

@@ -7,12 +7,15 @@
     </mat-card-header>
     <form #f="ngForm" [formGroup]="genSchedule" (ngSubmit)="generate(f.value, f.valid)">
       <mat-card-content align="left">
-        <mat-input-container>
-          <input matInput type="text" placeholder="Session Days" formControlName="sessionDays" required>
-          <mat-hint *ngIf="genSchedule.controls['sessionDays'].touched && genSchedule.hasError('required', 'sessionDays')" [ngStyle]="{'color':'red'}">
-            Please select the session days.
-          </mat-hint>
-        </mat-input-container>
+        <label>Session Days:</label>
+        <div class="session-days">
+          <mat-checkbox formControlName="sessionDays" (change)="onChange('M', $event)" class="session-margin">M</mat-checkbox>
+          <mat-checkbox formControlName="sessionDays" (change)="onChange('T', $event)" class="session-margin">T</mat-checkbox>
+          <mat-checkbox formControlName="sessionDays" (change)="onChange('W', $event)" class="session-margin">W</mat-checkbox>
+          <mat-checkbox formControlName="sessionDays" (change)="onChange('TH', $event)" class="session-margin">TH</mat-checkbox>
+          <mat-checkbox formControlName="sessionDays" (change)="onChange('F', $event)" class="session-margin">F</mat-checkbox>
+          <mat-checkbox formControlName="sessionDays" (change)="onChange('S', $event)" class="session-margin">S</mat-checkbox>
+        </div>
         <mat-input-container>
           <input matInput type="text" placeholder="Number of Sessions" formControlName="numberOfSessions" required>
           <mat-hint *ngIf="genSchedule.controls['numberOfSessions'].touched && genSchedule.hasError('required', 'numberOfSessions')"
@@ -40,8 +43,7 @@
               [ngStyle]="{'color':'red'}">
               Please enter the start date.
             </mat-hint>
-            <mat-hint *ngIf="genSchedule.get('datesGroup.startDate').touched && genSchedule.hasError('date', 'datesGroup')"
-              [ngStyle]="{'color':'red'}">
+            <mat-hint *ngIf="genSchedule.get('datesGroup.startDate').touched && genSchedule.hasError('date', 'datesGroup')" [ngStyle]="{'color':'red'}">
               The start date cannot be after the break or resume date(s).
             </mat-hint>
           </mat-input-container>
@@ -53,8 +55,7 @@
               [ngStyle]="{'color':'red'}">
               Please enter the break start date.
             </mat-hint>
-            <mat-hint *ngIf="genSchedule.get('datesGroup.breakStartDate').touched && genSchedule.hasError('date', 'datesGroup')"
-              [ngStyle]="{'color':'red'}">
+            <mat-hint *ngIf="genSchedule.get('datesGroup.breakStartDate').touched && genSchedule.hasError('date', 'datesGroup')" [ngStyle]="{'color':'red'}">
               The break date cannot be before the start date or after the resume date.
             </mat-hint>
           </mat-input-container>
@@ -66,8 +67,7 @@
               [ngStyle]="{'color':'red'}">
               Please enter the resume date.
             </mat-hint>
-            <mat-hint *ngIf="genSchedule.get('datesGroup.resumeDate').touched && genSchedule.hasError('date', 'datesGroup')"
-              [ngStyle]="{'color':'red'}">
+            <mat-hint *ngIf="genSchedule.get('datesGroup.resumeDate').touched && genSchedule.hasError('date', 'datesGroup')" [ngStyle]="{'color':'red'}">
               The resume date cannot be before the start or break date(s).
             </mat-hint>
           </mat-input-container>

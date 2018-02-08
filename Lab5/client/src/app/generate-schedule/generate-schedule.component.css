@@ -8,6 +8,17 @@
   width: 400px;
 }
 
+.session-days {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.session-margin {
+  margin-right: 30px;
+}
+
 mat-input-container {
     display: block;
     margin: 10px 0;
