@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ "$1" = "" ]; then
+  echo "No file_with_list_of_folders provided."
+  echo "./remove_unwanted file_with_list_of_folders sub_folder_or_file_to_remove "
+  exit
+fi
+if [ "$2" = "" ]; then
+  echo "No sub_folder_or_file_to_remove given."
+  echo "./remove_unwanted file_with_list_of_folders sub_folder_or_file_to_remove "
+  exit
+fi
+for a in `cat $1`; do
+    cd $a
+    rm -rf $2
+    cd ../
+done

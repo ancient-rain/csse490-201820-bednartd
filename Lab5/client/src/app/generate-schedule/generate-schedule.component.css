@@ -1,0 +1,18 @@
+.generate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.generate-card {
+  width: 400px;
+}
+
+mat-input-container {
+    display: block;
+    margin: 10px 0;
+}
+
+mat-radio-button {
+  margin: 0 10px;
+}

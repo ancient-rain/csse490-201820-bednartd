@@ -1,0 +1,21 @@
+Reading
+<ul><li> Big Java, Chapter 4</li><li> Big Java, Ch. 6 <span class="note">This should be review</span></li></ul>
+End Reading
+
+Due
+$due
+</ul>
+End Due
+
+Topics
+<ul><li> Loops (for and while)</li><li> The String class</li><li> Primitive types</li><li> Unit Tests with JUnit</li></ul>
+End Topics
+
+Resources
+<ul>$slides
+$solutions</ul>
+End Resources
+
+Programs
+$programs
+End Programs

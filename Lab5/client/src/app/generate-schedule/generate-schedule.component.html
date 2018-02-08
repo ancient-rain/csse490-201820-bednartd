@@ -1,0 +1,63 @@
+<div class="generate">
+  <mat-card class="generate-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Generate a Schedule</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <form #f="ngForm" [formGroup]="genSchedule" (ngSubmit)="generate(f.value, f.valid)">
+      <mat-card-content align="left">
+        <mat-input-container>
+          <input matInput type="text" placeholder="Session Days" formControlName="sessionDays" required>
+          <mat-hint *ngIf="genSchedule.controls['sessionDays'].touched && genSchedule.hasError('required', 'sessionDays')" [ngStyle]="{'color':'red'}">
+            Please select the session days.
+          </mat-hint>
+        </mat-input-container>
+        <mat-input-container>
+          <input matInput type="text" placeholder="Number of Sessions" formControlName="numberOfSessions" required>
+          <mat-hint *ngIf="genSchedule.controls['numberOfSessions'].touched && genSchedule.hasError('required', 'numberOfSessions')"
+            [ngStyle]="{'color':'red'}">
+            Please enter the number of sessions.
+          </mat-hint>
+          <mat-hint *ngIf="genSchedule.get('numberOfSessions').touched && genSchedule.hasError('numberOfSessions', 'numberOfSessions')"
+            [ngStyle]="{'color':'red'}">
+            Please enter a value greater than 0.
+          </mat-hint>
+        </mat-input-container>
+        <div>
+          <label>Start Week Number: </label>
+          <mat-radio-group formControlName="startWeekNumber" required>
+            <mat-radio-button value="0">0</mat-radio-button>
+            <mat-radio-button value="1">1</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div formGroupName="datesGroup">
+          <mat-input-container>
+            <input matInput type="text" placeholder="Start Date" formControlName="startDate" required>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.startDate').touched && genSchedule.hasError('required', ['datesGroup', 'startDate'])"
+              [ngStyle]="{'color':'red'}">
+              Please enter the start date.
+            </mat-hint>
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput type="text" placeholder="Break Start Date" formControlName="breakStartDate" required>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.breakStartDate').touched && genSchedule.hasError('required', ['datesGroup', 'breakStartDate'])"
+              [ngStyle]="{'color':'red'}">
+              Please enter the break start date.
+            </mat-hint>
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput type="text" placeholder="Resume Date" formControlName="resumeDate" required>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.resumeDate').touched && genSchedule.hasError('required', ['datesGroup', 'resumeDate'])"
+              [ngStyle]="{'color':'red'}">
+              Please enter the resume date.
+            </mat-hint>
+          </mat-input-container>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" [disabled]="!f.valid">Generate</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

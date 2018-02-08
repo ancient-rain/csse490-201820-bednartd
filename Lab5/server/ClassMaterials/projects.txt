@@ -1,0 +1,110 @@
+Start 
+Name: TwelveProblems
+MainLink: ../Programs/TwelveProblems/instructions.htm
+SessionStartName: JavaIntro
+NumCalendarDaysAllowed: 7
+End
+
+Start 
+Name: HW1
+MainLink: ../Homework/hw01.html
+SessionStartName: JavaIntro
+NumCalendarDaysAllowed: 2
+DueBeforeClass: 1
+End
+
+Start 
+Name: Map and 2D Array Problems
+MainLink: ../Programs/SixMapAnd2DArrayHomework/instructions.htm
+SessionStartName: 2DArraysAndMaps
+NumCalendarDaysAllowed: 4
+End
+
+Start 
+Name: Team Gradebook
+MainLink: ../Programs/TeamGradebook/instructions.htm
+SessionStartName: SimpleObjects
+NumCalendarDaysAllowed: 5
+End
+
+Start 
+Name: Scenes
+MainLink: ../Programs/Scenes/instructions.htm
+SessionStartName: IntroToUnitTesting
+NumCalendarDaysAllowed: 3
+End
+
+Start 
+Name: CrazyEights
+MainLink: ../Programs/CrazyEights/instructions.htm
+SessionStartName: PairingAndEncapsulation
+NumCalendarDaysAllowed: 4
+End
+
+Start 
+Name: Recursion Practice
+MainLink: ../Programs/RecursionPractice/instructions.htm
+SessionStartName: RecursionIntroduction
+NumCalendarDaysAllowed: 7
+End
+
+Start 
+Name: Linear Lights Out
+MainLink: ../Programs/LinearLightsOut/instructions.htm
+SessionStartName: EventBasedProgramming
+NumCalendarDaysAllowed: 4
+End
+
+Start 
+Name: BallWorlds
+MainLink: ../Programs/BallWorlds/index.html
+SessionStartName: Polymorphism
+NumCalendarDaysAllowed: 5
+End
+
+Start 
+Name: Arcade Game - Cycle 0
+MainLink: ../Programs/ArcadeGame/CSSE220_Centipede_programming_assignment.pdf
+SessionStartNumber: 22
+NumCalendarDaysAllowed: 2
+DueBeforeClass: 1
+End
+
+Start 
+Name: Arcade Game - Cycle 1
+MainLink: ../Programs/ArcadeGame/CSSE220_Centipede_programming_assignment.pdf
+SessionStartNumber: 23
+NumCalendarDaysAllowed: 2
+DueBeforeClass: 1
+End
+
+Start 
+Name: Arcade Game - Cycle 2
+MainLink: ../Programs/ArcadeGame/CSSE220_Centipede_programming_assignment.pdf
+SessionStartNumber: 24
+NumCalendarDaysAllowed: 5
+DueBeforeClass: 1
+End
+
+Start 
+Name: Arcade Game - Cycle 3
+MainLink: ../Programs/ArcadeGame/CSSE220_Centipede_programming_assignment.pdf
+SessionStartNumber: 26
+NumCalendarDaysAllowed: 4
+DueBeforeClass: 1
+End
+
+Start 
+Name: Arcade Game - Cycle 4
+MainLink: ../Programs/ArcadeGame/CSSE220_Centipede_programming_assignment.pdf
+SessionStartNumber: 28
+NumCalendarDaysAllowed: 3
+DueBeforeClass: 1
+End
+
+Start 
+Name: SinglyLinkedList
+MainLink: ../Programs/SinglyLinkedList/index.html
+SessionStartName: LinkedListsPart2
+NumCalendarDaysAllowed: 4
+End
