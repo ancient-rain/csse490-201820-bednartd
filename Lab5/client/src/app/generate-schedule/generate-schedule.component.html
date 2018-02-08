@@ -9,25 +9,28 @@
       <mat-card-content align="left">
         <mat-input-container>
           <input matInput type="text" placeholder="Session Days" formControlName="sessionDays" required>
-          <mat-hint *ngIf="genSchedule.get('sessionDays').touched && genSchedule.hasError('required', 'sessionDays')" [ngStyle]="{'color':'red'}">
+          <mat-hint *ngIf="genSchedule.controls['sessionDays'].touched && genSchedule.hasError('required', 'sessionDays')" [ngStyle]="{'color':'red'}">
             Please select the session days.
           </mat-hint>
         </mat-input-container>
         <mat-input-container>
           <input matInput type="text" placeholder="Number of Sessions" formControlName="numberOfSessions" required>
-          <mat-hint *ngIf="genSchedule.get('numberOfSessions').touched && genSchedule.hasError('required', 'numberOfSessions')" [ngStyle]="{'color':'red'}">
+          <mat-hint *ngIf="genSchedule.controls['numberOfSessions'].touched && genSchedule.hasError('required', 'numberOfSessions')"
+            [ngStyle]="{'color':'red'}">
             Please enter the number of sessions.
           </mat-hint>
-          <mat-hint *ngIf="genSchedule.get('numberOfSessions').touched && genSchedule.hasError('numberOfSessions', 'numberOfSessions')" [ngStyle]="{'color':'red'}">
+          <mat-hint *ngIf="genSchedule.get('numberOfSessions').touched && genSchedule.hasError('numberOfSessions', 'numberOfSessions')"
+            [ngStyle]="{'color':'red'}">
             Please enter a value greater than 0.
           </mat-hint>
         </mat-input-container>
-        <mat-input-container>
-          <input matInput type="text" placeholder="Start Week Number" formControlName="startWeekNumber" required>
-          <mat-hint *ngIf="genSchedule.get('startWeekNumber').touched && genSchedule.hasError('required', 'startWeekNumber')" [ngStyle]="{'color':'red'}">
-            Please select the start week number.
-          </mat-hint>
-        </mat-input-container>
+        <div>
+          <label>Start Week Number: </label>
+          <mat-radio-group formControlName="startWeekNumber" required>
+            <mat-radio-button value="0">0</mat-radio-button>
+            <mat-radio-button value="1">1</mat-radio-button>
+          </mat-radio-group>
+        </div>
         <div formGroupName="datesGroup">
           <mat-input-container>
             <input matInput type="text" placeholder="Start Date" formControlName="startDate" required>
@@ -53,7 +56,7 @@
         </div>
       </mat-card-content>
       <mat-card-actions align="end">
-        <button mat-raised-button [disabled]="!f.valid">Generate</button>
+        <button mat-raised-button color="primary" [disabled]="!f.valid">Generate</button>
       </mat-card-actions>
     </form>
   </mat-card>
