@@ -1,0 +1,149 @@
+Start 
+MainLink: ../Slides/JavaIntro.pdf
+SessionStartName: JavaIntro
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: TypesLoopsStrings
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: ArraysAndLists
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: 2DArraysAndMaps
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: SimpleObjects
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: IntroToGraphics
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: IntroToUnitTesting
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: ExamReview1
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: Exam1
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: PairingAndEncapsulation
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: SETechniques
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: CohesionAndCoupling
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: RecursionIntroduction
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: Interfaces
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: MoreRecursionMoreInterfaces
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: EventBasedProgramming
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: Inheritance
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: Polymorphism
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: OOAndExceptions
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: ExamReview2
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: Exam2
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: Multithreading
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: LinkedLists 
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: LinkedListsPart2
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: TestingGUIApplications
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: Sorting
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: MergeSort
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: MoreMultithreading
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: ThreadPerformance
+End
+
+Start 
+MainLink: ../Slides/{SessionStartName}.pdf
+SessionStartName: Presentations
+End
