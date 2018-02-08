@@ -1,0 +1,13 @@
+.generate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.generate-card {
+  width: 400px;
+}
+
+mat-input-container {
+    display: block;
+}
