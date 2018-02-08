@@ -1,3 +1,4 @@
+import { ScheduleService } from './../services/schedule.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -32,7 +33,8 @@ export class GenerateScheduleComponent implements OnInit {
   genSchedule: FormGroup;
   days: any;
 
-  constructor(fb: FormBuilder, private _router: Router) {
+  constructor(fb: FormBuilder, private _router: Router,
+    private scheduleService: ScheduleService) {
     this.days = [];
     this.genSchedule = fb.group({
       'sessionDays': new FormControl('', Validators.required),
@@ -51,13 +53,17 @@ export class GenerateScheduleComponent implements OnInit {
 
   generate(value: any, valid: boolean) {
     if (valid) {
-      console.log('Generating', this.days);
-      console.log('sessionDays', value.sessionDays);
-      console.log('numberOfSessions', value.numberOfSessions);
-      console.log('startWeekNumber', value.startWeekNumber);
-      console.log('startDate', this.filterDate(value.datesGroup.startDate));
-      console.log('breakStartDate', this.filterDate(value.datesGroup.breakStartDate));
-      console.log('resumeDate', this.filterDate(value.datesGroup.resumeDate));
+      const schedule = {
+        sessionDays: this.filterDays(),
+        numberOfSessions: value.numberOfSessions,
+        startWeekNumber: value.startWeekNumber,
+        startDate: this.filterDate(value.datesGroup.startDate),
+        breakStartDate: this.filterDate(value.datesGroup.breakStartDate),
+        resumeDate: this.filterDate(value.datesGroup.resumeDate)
+      };
+      this.scheduleService.generateSchedule(schedule).subscribe(s => {
+        console.log(s);
+      });
     }
     // this._router.navigate(['/session']);
   }
@@ -67,6 +73,14 @@ export class GenerateScheduleComponent implements OnInit {
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
     return `${month}/${day}/${year}`;
+  }
+
+  filterDays(): string {
+    let dayStr = '';
+    for (let i = 0; i < this.days.length; i++) {
+      dayStr += this.days[i];
+    }
+    return dayStr;
   }
 
   onChange(day: string, event) {

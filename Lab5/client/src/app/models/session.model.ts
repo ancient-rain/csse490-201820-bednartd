@@ -1,4 +1,4 @@
-export class Schedule {
+export class Session {
     constructor(
         public sessionNumber: number,
         public sessionWeekDay: string,
@@ -14,5 +14,5 @@ export class Schedule {
                 values: any
             }]
         }
-        ) { }
+    ) { }
 }
