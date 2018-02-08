@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <span routerLink="/" class="link">{{title}}</span>
+  <span class="spacer"></span>
+  <div>
+    <a mat-button [routerLink]="['/basic-product']">Basic DI</a>
+    <a mat-button [routerLink]="['/couple-providers']">Two Providers</a>
+    <a mat-button [routerLink]="['/multiple-providers']">Multiple Providers</a>
+    <a mat-button [routerLink]="['/token']">Use Token</a>
+  </div>
+</mat-toolbar>
