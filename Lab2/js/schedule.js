@@ -24,7 +24,8 @@ module.exports = class Schedule {
                 sessions.push(new session(i + 1, configObject, 0, configObject.startWeekNumber, order[i], slides, programs));
             }
             else {
-                sessions.push(new session(i + 1, configObject, sessions[i - 1].sessionDate, sessions[i - 1].week, order[i], slides, programs));
+                const week = parseInt(sessions[i - 1].week);
+                sessions.push(new session(i + 1, configObject, sessions[i - 1].sessionDate, week, order[i], slides, programs));
             }
         }
         return sessions;
