@@ -10,7 +10,7 @@
         <mat-input-container>
           <input matInput type="text" placeholder="Session Days" formControlName="sessionDays" required>
           <mat-hint *ngIf="genSchedule.get('sessionDays').touched && genSchedule.hasError('required', 'sessionDays')" [ngStyle]="{'color':'red'}">
-            Please enter the session days.
+            Please select the session days.
           </mat-hint>
         </mat-input-container>
         <mat-input-container>
@@ -18,31 +18,39 @@
           <mat-hint *ngIf="genSchedule.get('numberOfSessions').touched && genSchedule.hasError('required', 'numberOfSessions')" [ngStyle]="{'color':'red'}">
             Please enter the number of sessions.
           </mat-hint>
+          <mat-hint *ngIf="genSchedule.get('numberOfSessions').touched && genSchedule.hasError('numberOfSessions', 'numberOfSessions')" [ngStyle]="{'color':'red'}">
+            Please enter a value greater than 0.
+          </mat-hint>
         </mat-input-container>
         <mat-input-container>
           <input matInput type="text" placeholder="Start Week Number" formControlName="startWeekNumber" required>
           <mat-hint *ngIf="genSchedule.get('startWeekNumber').touched && genSchedule.hasError('required', 'startWeekNumber')" [ngStyle]="{'color':'red'}">
-            Please enter the session days.
+            Please select the start week number.
           </mat-hint>
         </mat-input-container>
-        <mat-input-container>
-          <input matInput type="text" placeholder="Start Date" formControlName="startDate" required>
-          <mat-hint *ngIf="genSchedule.get('startDate').touched && genSchedule.hasError('required', 'startDate')" [ngStyle]="{'color':'red'}">
-            Please enter the start date.
-          </mat-hint>
-        </mat-input-container>
-        <mat-input-container>
-          <input matInput type="text" placeholder="Break Start Date" formControlName="breakStartDate" required>
-          <mat-hint *ngIf="genSchedule.get('breakStartDate').touched && genSchedule.hasError('required', 'breakStartDate')" [ngStyle]="{'color':'red'}">
-            Please enter the break start date.
-          </mat-hint>
-        </mat-input-container>
-        <mat-input-container>
-          <input matInput type="text" placeholder="Resume Date" formControlName="resumeDate" required>
-          <mat-hint *ngIf="genSchedule.get('resumeDate').touched && genSchedule.hasError('required', 'resumeDate')" [ngStyle]="{'color':'red'}">
-            Please enter the resume date.
-          </mat-hint>
-        </mat-input-container>
+        <div formGroupName="datesGroup">
+          <mat-input-container>
+            <input matInput type="text" placeholder="Start Date" formControlName="startDate" required>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.startDate').touched && genSchedule.hasError('required', ['datesGroup', 'startDate'])"
+              [ngStyle]="{'color':'red'}">
+              Please enter the start date.
+            </mat-hint>
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput type="text" placeholder="Break Start Date" formControlName="breakStartDate" required>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.breakStartDate').touched && genSchedule.hasError('required', ['datesGroup', 'breakStartDate'])"
+              [ngStyle]="{'color':'red'}">
+              Please enter the break start date.
+            </mat-hint>
+          </mat-input-container>
+          <mat-input-container>
+            <input matInput type="text" placeholder="Resume Date" formControlName="resumeDate" required>
+            <mat-hint *ngIf="genSchedule.get('datesGroup.resumeDate').touched && genSchedule.hasError('required', ['datesGroup', 'resumeDate'])"
+              [ngStyle]="{'color':'red'}">
+              Please enter the resume date.
+            </mat-hint>
+          </mat-input-container>
+        </div>
       </mat-card-content>
       <mat-card-actions align="end">
         <button mat-raised-button [disabled]="!f.valid">Generate</button>
