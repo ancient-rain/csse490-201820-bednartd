@@ -11,15 +11,34 @@ import { ScheduleService } from '../services/schedule.service';
 export class ViewScheduleComponent implements OnInit {
 
   headers: any[];
-  sessions: Session[];
+  columnIds: any[];
+  sessions: any[];
 
   constructor(private scheduleService: ScheduleService) {
     this.scheduleService.getHeaders().subscribe(result => {
+      const array = [];
       this.headers = result;
-      console.log(this.headers);
+      for (let i = 0; i < result.length; i++) {
+        array.push(result[i].toLowerCase());
+      }
+      this.columnIds = array;
+      console.log(this.columnIds);
     });
     this.scheduleService.getSchedule().subscribe(result => {
-      this.sessions = result;
+      const array = [];
+      for (let i = 0; i < result.length; i++) {
+        const scheduleComponent = result[i].scheduleSession.scheduleComponents;
+        array.push({
+          week: scheduleComponent[0].values,
+          session: scheduleComponent[1].values,
+          reading: scheduleComponent[2].values,
+          due: scheduleComponent[3].values,
+          topics: scheduleComponent[4].values,
+          resources: scheduleComponent[5].values,
+          programs: scheduleComponent[6].values
+        });
+      }
+      this.sessions = array;
       console.log(this.sessions);
     });
   }

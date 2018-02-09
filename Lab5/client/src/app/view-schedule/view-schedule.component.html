@@ -1,47 +1,32 @@
-<!-- <mat-table [dataSource]="sessions">
+<mat-table [dataSource]="sessions">
   <ng-container matColumnDef="week">
-    <mat-header-cell *matHeaderCellDef>test</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>{{headers[0]}}</mat-header-cell>
     <mat-cell *matCellDef="let element">{{element.week}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="session">
     <mat-header-cell *matHeaderCellDef>{{headers[1]}}</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.scheduleSession.scheduleComponents[1].values}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.session}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="reading">
     <mat-header-cell *matHeaderCellDef>{{headers[2]}}</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.scheduleSession.scheduleComponents[2].values}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.reading}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="due">
     <mat-header-cell *matHeaderCellDef>{{headers[3]}}</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.scheduleSession.scheduleComponents[3].values}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.due}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="topics">
     <mat-header-cell *matHeaderCellDef>{{headers[4]}}</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.scheduleSession.scheduleComponents[4].values}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.topics}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="resources">
     <mat-header-cell *matHeaderCellDef>{{headers[5]}}</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.scheduleSession.scheduleComponents[5].values}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.resources}}</mat-cell>
   </ng-container>
   <ng-container matColumnDef="programs">
     <mat-header-cell *matHeaderCellDef>{{headers[6]}}</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.scheduleSession.scheduleComponents[6].values}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.programs}}</mat-cell>
   </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table> -->
-
-<table>
-  <th *ngFor="let header of headers">
-    <tr>{{header}}</tr>
-  </th>
-  <tr *ngFor="let session of sessions">
-    <th>{{session.scheduleSession.scheduleComponents[0].values}}</th>
-    <th>{{session.scheduleSession.scheduleComponents[1].values}}</th>
-    <th>{{session.scheduleSession.scheduleComponents[2].values}}</th>
-    <th>{{session.scheduleSession.scheduleComponents[3].values}}</th>
-    <th>{{session.scheduleSession.scheduleComponents[4].values}}</th>
-    <th>{{session.scheduleSession.scheduleComponents[5].values}}</th>
-    <th>{{session.scheduleSession.scheduleComponents[6].values}}</th>
-  </tr>
-</table>
+  <mat-header-row *matHeaderRowDef="columnIds"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnIds;"></mat-row>
+</mat-table>
