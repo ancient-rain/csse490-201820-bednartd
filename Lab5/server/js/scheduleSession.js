@@ -142,12 +142,14 @@ module.exports = class ScheduleSession {
     getResources() {
         for (let i = 0; i < slidesArray.length; i++) {
             if (slidesArray[i] == `SessionStartName: ${this.sessionName}`) {
-                const sessionIndex = i - 1;
+                // const sessionIndex = i - 1;
                 let sessionResources = '';
-                let sessionLink = slidesArray[sessionIndex];
+                // let sessionLink = slidesArray[sessionIndex];
 
-                sessionLink = sessionLink.split(': ')[1];
-                sessionResources = `<a href="${sessionLink}">${this.sessionName}</a>`;
+                // sessionLink = sessionLink.split(': ')[1];
+                // console.log(sessionLink);
+                sessionResources = `<a href="../Slides/${this.sessionName}.pdf">${this.sessionName}</a>`;
+                console.log(sessionResources);
 
                 return sessionResources;
             }
