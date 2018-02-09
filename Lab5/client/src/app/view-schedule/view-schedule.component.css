@@ -1,0 +1,23 @@
+mat-header-row {
+    background-color :#673ab7;
+    text-align: center;
+}
+
+mat-header-cell {
+    color: #fff;
+    text-align: center;
+}
+
+mat-row {
+    margin: 5px;
+    text-align: center;
+}
+
+mat-cell {
+    margin: 5px;
+    text-align: center;
+}
+
+mat-table {
+    margin: 50px;
+}
