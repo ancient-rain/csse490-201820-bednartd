@@ -1,0 +1,12 @@
+<h2>Add Contact</h2>
+<form>
+    <p>Full Name: </p>
+    <input type="text" [(ngModel)]="name" name="usrname" placeholder="Ex. Shubham Vyas" required>
+
+    <p>Phone Number:</p>
+    <input type="tel" name="usrtel" [(ngModel)]="phone" placeholder="Ex. (435) 294-8888" required>
+    <br>
+    <br>
+    <input type="submit" value="Submit" (click)="addContact()">
+</form>
+
