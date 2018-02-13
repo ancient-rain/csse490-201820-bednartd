@@ -76,10 +76,12 @@ describe('ToDoFormComponent', () => {
         currentRoute.snapshot.params = {}; // pass empty object for params
         fixture.detectChanges(); // triggers ngOnInit() in component
 
-        // TODO: write expectations for the values of editing, todoId, and title
+        // DONE: write expectations for the values of editing, todoId, and title
         // values of the ToDoFormComponent instance.
         // See the THIS IS A NICE EXAMPLE TO START FROM! note below.
-        expect(1).toBe(2);
+        expect(component.editing).toBeFalsy();
+        expect(component.title).toBe('New Todo Item');
+        expect(component.todoId).toBeNaN();
       })
   ));
 
