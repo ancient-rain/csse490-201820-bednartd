@@ -191,10 +191,10 @@ describe('ToDoFormComponent', () => {
 
         tick(); // Simulate the passing of time for saveTodo to complete
 
-        // TODO: write your missing test code here.
+        // DONE: write your missing test code here.
         // See the THIS IS A NICE EXAMPLE TO START FROM! note above.
         // Write 1 to 2 expectations.
-        expect(1).toBe(2);
+        expect(service.updateTodo).toHaveBeenCalled();
       })
   ));
 
