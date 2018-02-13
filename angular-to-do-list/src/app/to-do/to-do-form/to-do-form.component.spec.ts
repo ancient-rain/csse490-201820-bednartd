@@ -21,7 +21,7 @@ import 'rxjs/add/observable/of';
 */
 class MockActivatedRoute {
   snapshot = {
-    params: {id: 1},
+    params: { id: 1 },
   };
 }
 
@@ -45,14 +45,14 @@ describe('ToDoFormComponent', () => {
       ],
       providers: [
         // This class only has spies to spy on methods.
-        {provide: ToDoService, useClass: MockToDoService},
+        { provide: ToDoService, useClass: MockToDoService },
         { // This class exists only mocks the params['id'] value
           provide: ActivatedRoute,
           useClass: MockActivatedRoute,
         }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -64,14 +64,14 @@ describe('ToDoFormComponent', () => {
     inject([ToDoService, Router],
       (service: ToDoService, router: Router) => {
         expect(component).toBeTruthy();
-    }
-  ));
+      }
+    ));
 
   it('should be able to create a New Todo Item form',
-  fakeAsync(inject([ToDoService, Router, ActivatedRoute],
+    fakeAsync(inject([ToDoService, Router, ActivatedRoute],
       (service: ToDoService, router: Router,
         route: ActivatedRoute) => {
-          // details for the current route injected here.
+        // details for the current route injected here.
         const currentRoute = fixture.debugElement.injector.get(ActivatedRoute);
         currentRoute.snapshot.params = {}; // pass empty object for params
         fixture.detectChanges(); // triggers ngOnInit() in component
@@ -83,10 +83,10 @@ describe('ToDoFormComponent', () => {
         expect(component.title).toBe('New Todo Item');
         expect(component.todoId).toBeNaN();
       })
-  ));
+    ));
 
   it('form should be invalid when empty',
-  fakeAsync(inject([ToDoService, Router, ActivatedRoute],
+    fakeAsync(inject([ToDoService, Router, ActivatedRoute],
       (service: ToDoService, router: Router,
         route: ActivatedRoute) => {
         const currentRoute = fixture.debugElement.injector.get(ActivatedRoute);
@@ -101,10 +101,10 @@ describe('ToDoFormComponent', () => {
         expect(component.formGroup.controls['done'].value).toBe('');
         expect(component.formGroup.controls['notes'].value).toBe('');
       })
-  ));
+    ));
 
   it('form name/todo field should be invalid when empty',
-  fakeAsync(inject([ToDoService, Router, ActivatedRoute],
+    fakeAsync(inject([ToDoService, Router, ActivatedRoute],
       (service: ToDoService, router: Router,
         route: ActivatedRoute) => {
         const currentRoute = fixture.debugElement.injector.get(ActivatedRoute);
@@ -116,10 +116,10 @@ describe('ToDoFormComponent', () => {
         expect(component.formGroup.controls['name'].value).toBe('');
         expect(component.formGroup.valid).toBeFalsy();
       })
-  ));
+    ));
 
   it('form name/todo field should yield required error when empty',
-  fakeAsync(inject([ToDoService, Router, ActivatedRoute],
+    fakeAsync(inject([ToDoService, Router, ActivatedRoute],
       (service: ToDoService, router: Router,
         route: ActivatedRoute) => {
         const currentRoute = fixture.debugElement.injector.get(ActivatedRoute);
@@ -129,11 +129,11 @@ describe('ToDoFormComponent', () => {
         const errors = todo.errors || {};
         expect(errors['required']).toBeTruthy();
       })
-  ));
+    ));
 
   /*  THIS IS A NICE EXAMPLE TO START FROM! */
   it('should navigate to ToDoListComponent after saving a Todo item',
-  fakeAsync(inject([ToDoService, Router, Location, ActivatedRoute],
+    fakeAsync(inject([ToDoService, Router, Location, ActivatedRoute],
       (service: ToDoService, router: Router, location: Location,
         route: ActivatedRoute) => {
         const currentRoute = fixture.debugElement.injector.get(ActivatedRoute);
@@ -151,10 +151,10 @@ describe('ToDoFormComponent', () => {
         expect(component.navigateToList).toHaveBeenCalled();
         expect(location.path()).toBe('/todos');
       })
-  ));
+    ));
 
   it('should call ToDoService.addTodo() when adding a new Todo item',
-  fakeAsync(inject([ToDoService, Router, Location, ActivatedRoute],
+    fakeAsync(inject([ToDoService, Router, Location, ActivatedRoute],
       (service: ToDoService, router: Router, location: Location,
         route: ActivatedRoute) => {
         const currentRoute = fixture.debugElement.injector.get(ActivatedRoute);
@@ -175,10 +175,10 @@ describe('ToDoFormComponent', () => {
         expect(service.addTodo).toHaveBeenCalled();
         expect(location.path()).toBe('/todos');
       })
-  ));
+    ));
 
   it('should call ToDoService.updateTodo() when updating a new Todo item',
-  fakeAsync(inject([ToDoService, Router, Location, ActivatedRoute],
+    fakeAsync(inject([ToDoService, Router, Location, ActivatedRoute],
       (service: ToDoService, router: Router, location: Location,
         route: ActivatedRoute) => {
         fixture.detectChanges();
@@ -196,30 +196,32 @@ describe('ToDoFormComponent', () => {
         // Write 1 to 2 expectations.
         expect(service.updateTodo).toHaveBeenCalled();
       })
-  ));
+    ));
 
   it('should be able to create an Edit Todo Item form',
-  fakeAsync(inject([ToDoService, Router],
+    fakeAsync(inject([ToDoService, Router],
       (service: ToDoService, router: Router) => {
-      fixture.detectChanges();
+        fixture.detectChanges();
 
-      // TODO: write expectations for the values of editing, todoId, and title
-      // values of the ToDoFormComponent instance.
-      // See the THIS IS A NICE EXAMPLE TO START FROM! note above.
-      expect(1).toBe(2);
-  })));
+        // DONE: write expectations for the values of editing, todoId, and title
+        // values of the ToDoFormComponent instance.
+        // See the THIS IS A NICE EXAMPLE TO START FROM! note above.
+        expect(component.editing).toBeTruthy();
+        expect(component.todoId).toBe(1);
+        expect(component.title).toBe('Edit Todo Item');
+      })));
 
 
   it('form should be invalid when reset with cancelEditTodo()',
-  fakeAsync(inject([ToDoService, Router],
+    fakeAsync(inject([ToDoService, Router],
       (service: ToDoService, router: Router) => {
-      fixture.detectChanges();
-      component.formGroup.controls['name'].setValue('Call my friend Bob');
-      expect(component.formGroup.valid).toBeTruthy();
+        fixture.detectChanges();
+        component.formGroup.controls['name'].setValue('Call my friend Bob');
+        expect(component.formGroup.valid).toBeTruthy();
 
-      component.cancelEditTodo();
+        component.cancelEditTodo();
 
-      expect(component.formGroup.valid).toBeFalsy();
-  })));
+        expect(component.formGroup.valid).toBeFalsy();
+      })));
 
 });
