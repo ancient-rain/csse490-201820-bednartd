@@ -29,8 +29,18 @@ export class ToDoService {
     this.nextId++;
   }
   updateTodo(todo: Todo) {
-    // TODO: Implement this method.
+    // DONE: Implement this method.
+    for (let i = 0; i < this.pItems.length; i++) {
+      const item = this.pItems[i];
+      if (item.id === todo.id) {
+        item.name = todo.name;
+        item.notes = todo.notes;
+        item.due = todo.due;
+        item.done = todo.done;
+      }
+    }
   }
+
   deleteTodo(todo: Todo) {
     // TODO: Implement this method.
   }
