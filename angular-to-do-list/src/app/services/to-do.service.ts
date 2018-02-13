@@ -5,6 +5,7 @@ import { TODO_ITEMS } from '../../api/to-do-data';
 @Injectable()
 export class ToDoService {
   pItems: Todo[] = TODO_ITEMS;
+  nextId = this.pItems.length + 1;
 
   constructor() { }
 
@@ -12,18 +13,20 @@ export class ToDoService {
     return this.pItems;
   }
   getTodo(id: number): Todo {
-    // TODO: Implement this method.
-    // for (let i = 0; i < this.pItems.length; i++) {
-    //   const item = this.pItems[i];
-    //   if (item.id === id) {
-    //     return item;
-    //   }
-    // }
+    // DONE: Implement this method.
+    for (let i = 0; i < this.pItems.length; i++) {
+      const item = this.pItems[i];
+      if (item.id === id) {
+        return item;
+      }
+    }
     return  null;
   }
   addTodo(todo: Todo) {
-    // TODO: Implement this method.
+    // DONE: Implement this method.
+    todo.id = this.nextId;
     this.pItems.push(todo);
+    this.nextId++;
   }
   updateTodo(todo: Todo) {
     // TODO: Implement this method.
