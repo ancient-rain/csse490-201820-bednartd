@@ -95,7 +95,12 @@ describe('ToDoFormComponent', () => {
 
         // DONE: write your missing test code here.
         // See the THIS IS A NICE EXAMPLE TO START FROM! note below.
-        expect(component.formGroup.valid).toBeFalsy();
+        expect(component.formGroup.controls['id'].value).toBe('');
+        expect(component.formGroup.controls['name'].value).toBe('');
+        expect(component.formGroup.controls['due'].value).toBe('');
+        expect(component.formGroup.controls['done'].value).toBe('');
+        expect(component.formGroup.controls['notes'].value).toBe('');
+        console.log(component.formGroup.controls['id'].value);
       })
   ));
 
@@ -107,9 +112,10 @@ describe('ToDoFormComponent', () => {
         currentRoute.snapshot.params = {};
         fixture.detectChanges();
 
-        // TODO: write your missing test code here.
+        // DONE: write your missing test code here.
         // See the THIS IS A NICE EXAMPLE TO START FROM! note below.
-        expect(1).toBe(2);
+        expect(component.formGroup.controls['name'].value).toBe('');
+        expect(component.formGroup.valid).toBeFalsy();
       })
   ));
 
