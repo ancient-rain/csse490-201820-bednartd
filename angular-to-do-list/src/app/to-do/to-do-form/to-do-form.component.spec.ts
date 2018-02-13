@@ -93,9 +93,9 @@ describe('ToDoFormComponent', () => {
         currentRoute.snapshot.params = {};
         fixture.detectChanges();
 
-        // TODO: write your missing test code here.
+        // DONE: write your missing test code here.
         // See the THIS IS A NICE EXAMPLE TO START FROM! note below.
-        expect(1).toBe(2);
+        expect(component.formGroup.valid).toBeFalsy();
       })
   ));
 
