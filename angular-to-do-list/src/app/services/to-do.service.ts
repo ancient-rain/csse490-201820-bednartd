@@ -5,7 +5,7 @@ import { TODO_ITEMS } from '../../api/to-do-data';
 @Injectable()
 export class ToDoService {
   pItems: Todo[] = TODO_ITEMS;
-  nextId = this.pItems.length + 1;
+  private nextId = this.pItems.length + 1;
 
   constructor() { }
 
@@ -42,7 +42,13 @@ export class ToDoService {
   }
 
   deleteTodo(todo: Todo) {
-    // TODO: Implement this method.
+    // DONE: Implement this method.
+    for (let i = 0; i < this.pItems.length; i++) {
+      const item = this.pItems[i];
+      if (item.id === todo.id) {
+        this.pItems.splice(i, 1);
+      }
+    }
   }
 
 }
