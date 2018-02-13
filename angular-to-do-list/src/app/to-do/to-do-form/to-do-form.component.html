@@ -1,0 +1,57 @@
+<div class="main">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <h2>
+                    {{title}}
+                </h2>
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="formGroup" (ngSubmit)="saveTodo(formGroup.value)" novalidate>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="To Do" type="text" formControlName="name">
+                    <mat-error *ngIf="formGroup.hasError('required', 'name')">
+                      A todo item is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Choose a due date" [matDatepicker]="picker" formControlName="due">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <section class="full-width checkbox-section">
+                    <mat-checkbox class="checkbox-margin" formControlName="done">Done</mat-checkbox>
+                </section>
+
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Notes" type="text" formControlName="notes">
+                </mat-form-field>
+
+                <div class="full-width">
+                  <div class="button-margin right">
+                    <button mat-raised-button type="submit" 
+                      color="primary" *ngIf="formGroup.valid">
+                        <mat-icon>save</mat-icon> Save
+                    </button>
+                  </div>
+
+                  <button mat-raised-button (click)="removeToDo()"
+                    *ngIf="todoId" type="button" color="accent">
+                      <mat-icon>delete</mat-icon>
+                  </button>
+
+                    <div class="button-margin right">
+                      <button mat-raised-button type="button"
+                      (click)="cancelEditTodo()">
+                          <mat-icon>not_interested</mat-icon> Cancel
+                      </button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,52 @@
+
+<div class="main mat-elevation-z8">
+    <mat-table #table [dataSource]="todos" renderRows>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> To-Do </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+  
+      <!-- Due Column -->
+      <ng-container matColumnDef="due">
+        <mat-header-cell *matHeaderCellDef> Due </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.due | date: 'EE, MMM dd yyyy'}} </mat-cell>
+      </ng-container>
+  
+      <!-- Notes Column -->
+      <ng-container matColumnDef="notes">
+        <mat-header-cell *matHeaderCellDef> Notes </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.notes}} </mat-cell>
+      </ng-container>
+  
+      <!-- Done Column -->
+      <ng-container matColumnDef="done">
+        <mat-header-cell *matHeaderCellDef> Done </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+          <mat-checkbox [disabled]="true"
+            [checked]="element.done">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+              <button mat-button (click)="editToDo(element)" type="button">
+                  <mat-icon>mode_edit</mat-icon>
+              </button>
+          </mat-cell>
+        </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-paginator #paginator
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]"
+                   [showFirstLastButtons]="true">
+    </mat-paginator>
+  </div>

@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+  <span routerLink="/todos" class="link">{{title}}</span>
+  <span class="spacer"></span>
+  <div>
+    <a mat-button [routerLink]="['/todos']">Todo List</a>
+    <a mat-button [routerLink]="['/todo-form']">Add Todo Item</a>
+  </div>
+</mat-toolbar>
