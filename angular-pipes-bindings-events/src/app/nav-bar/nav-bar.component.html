@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+    <span routerLink="/" class="link">{{title}}</span>
+    <span class="spacer"></span>
+
+    <button mat-icon-button [matMenuTriggerFor]="listMenu">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #listMenu="matMenu" class="list-menu">
+        <mat-nav-list>
+            <mat-list-item>
+                <a mat-line [routerLink]="['/temp-pipe']">Temperature Pipe</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a mat-line [routerLink]="['/binding']">Attribute vs Property Binding</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a mat-line [routerLink]="['/template-binding']">Template Binding</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a mat-line [routerLink]="['/two-way-binding']">Two Way Binding</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a mat-line [routerLink]="['/observables-events']">Observables and Events</a>
+            </mat-list-item>
+            <mat-list-item>
+                <a mat-line [routerLink]="['/observables-events-http']">Observables, Events, and Http</a>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-menu>
+</mat-toolbar>
