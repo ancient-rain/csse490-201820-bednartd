@@ -37,12 +37,13 @@ describe('SearchService', () => {
         // DONE: Add your test code here
         // expect(1).toBe(2);
         searchService.search('').subscribe(results => {
-          expect(results.name).toBeTruthy('John Elway');
+          expect(results.name).toBeTruthy('John Elway'); // FEEDBACK: results is an array
         });
 
         // Except that a single request has been made that matches the given
         // URL and flushes a mocked response
         // DONE: Add Code here
+        // FEEDBACK: backend.expectOne('assets/data/people.json') (-1)
         const request = backend.expectOne('John Elway');
         request.flush(mockResponse, { status: 200, statusText: 'OK' });
       })));
@@ -63,12 +64,13 @@ describe('SearchService', () => {
         // TODO: Add your test code here
         // expect(1).toBe(2);
         searchService.search('John').subscribe(results => {
-          expect(results.name).toBeTruthy('John Elway');
+          expect(results.name).toBeTruthy('John Elway'); // FEEDBACK: results is an array
         });
 
         // Except that a single request has been made that matches the given
         // URL and flushes a mocked response
         // TODO: Add Code here
+        // FEEDBACK: backend.expectOne('assets/data/people.json') (-1)
         const request = backend.expectOne('John Elway');
         request.flush(mockResponse, { status: 200, statusText: 'OK' });
       })));
@@ -87,14 +89,15 @@ describe('SearchService', () => {
         ];
 
         // TODO: Add your test code here
-        expect(1).toBe(2);
+        expect(1).toBe(2); // FEEDBACK: Remove this
         searchService.get(1).subscribe(results => {
-          expect(results.name).toBeTruthy('John Elway');
+          expect(results.name).toBeTruthy('John Elway'); // FEEDBACK: results is an array
         });
 
         // Except that a single request has been made that matches the given
         // URL and flushes a mocked response
         // TODO: Add Code here
+        // FEEDBACK: backend.expectOne('assets/data/people.json') (-1)
         const request = backend.expectOne('John Elway');
         request.flush(mockResponse, { status: 200, statusText: 'OK' });
       })));
