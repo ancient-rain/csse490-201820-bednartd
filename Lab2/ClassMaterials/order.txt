@@ -20,7 +20,7 @@ OOAndExceptions
 ExamReview2
 Exam2
 Multithreading
-LinkedLists 
+LinkedLists
 LinkedListsPart2
 TestingGUIApplications
 Sorting

@@ -1,0 +1,5 @@
+A few breaking changes:
+LINUX vs Windows line endings for .txt files
+stripping while space at end of lines
+404 middleware must be an error first middleware
+Grade: 16/20
